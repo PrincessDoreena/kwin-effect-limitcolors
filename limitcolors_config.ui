@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+      <class>LimitColorsConfig</class>
+      <widget class="QWidget" name="LimitColorsConfig">
+            <property name="geometry">
+                  <rect>
+                        <x>0</x>
+                        <y>0</y>
+                        <width>304</width>
+                        <height>250</height>
+                  </rect>
+            </property>
+            <property name="minimumSize">
+                  <size>
+                        <width>304</width>
+                        <height>250</height>
+                  </size>
+            </property>
+            <layout class="QGridLayout" name="gridLayout">
+                  <item row="0" column="0">
+                        <widget class="QLabel" name="format_label">
+                              <property name="text">
+                                    <string>Format:</string>
+                              </property>
+                              <property name="alignment">
+                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                              </property>
+                        </widget>
+                  </item>
+                  <item row="0" column="1">
+                        <widget class="QComboBox" name="kcfg_format_dropdown">
+                              <item>
+                                    <property name="text">
+                                          <string>RGB565</string>
+                                    </property>
+                              </item>
+                              <item>
+                                    <property name="text">
+                                          <string>RGB666</string>
+                                    </property>
+                              </item>
+                        </widget>
+                  </item>
+                  <item row="1" column="0">
+                        <widget class="QLabel" name="offset_label">
+                              <property name="text">
+                                    <string>Offset:</string>
+                              </property>
+                              <property name="alignment">
+                                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                              </property>
+                        </widget>
+                  </item>
+                  <item row="1" column="1">
+                        <widget class="QComboBox" name="kcfg_offset_dropdown">
+                              <item>
+                                    <property name="text">
+                                          <string>0</string>
+                                    </property>
+                              </item>
+                              <item>
+                                    <property name="text">
+                                          <string>1</string>
+                                    </property>
+                              </item>
+                              <item>
+                                    <property name="text">
+                                          <string>2</string>
+                                    </property>
+                              </item>
+                              <item>
+                                    <property name="text">
+                                          <string>3</string>
+                                    </property>
+                              </item>
+                        </widget>
+                  </item>
+            </layout>
+
+      </widget>
+      <resources/>
+      <connections/>
+</ui>

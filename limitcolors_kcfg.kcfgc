@@ -1,0 +1,4 @@
+File=limitcolors_kcfg.kcfg
+ClassName=LimitColorsKConfig
+Singleton=true
+Mutators=true

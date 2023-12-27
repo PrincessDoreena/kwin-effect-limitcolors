@@ -1,0 +1,21 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "princessdorinakovacs@gmail.com",
+                "Name": "Dorina Kovacs"
+            }
+        ],
+        "Category": "Accessibility",
+        "Description": "Compresses pixels to 16/18 bits per color",
+        "Description[hu]": "Tömöríti a pixeleket 16/18 bit per színre",
+        "EnabledByDefault": false,
+        "Id": "limitcolors",
+        "License": "GPL",
+        "Name": "Limit colors",
+        "Name[hu]": "Színek korlátozása"
+    },
+    "X-KDE-ConfigModule": "kwin_limitcolors_config",
+    "org.kde.kwin.effect": {
+    }
+}
