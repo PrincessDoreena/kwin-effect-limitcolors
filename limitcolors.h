@@ -12,6 +12,8 @@ namespace KWin
 {
 
 class GLShader;
+class GLTexture;
+class GLFramebuffer;
 
 /**
  * Compress desktop's colors
@@ -28,6 +30,7 @@ public:
 
     void reconfigure(ReconfigureFlags flags) override;
     void paintScreen(int mask, const QRegion & region, KWin::ScreenPaintData & data) override;
+    void prePaintScreen(ScreenPrePaintData &data, std::chrono::milliseconds presentTime) override;
 
     int requestedEffectChainPosition() const override;
 
@@ -43,6 +46,8 @@ private:
     bool m_inited;
     bool m_valid;
     std::unique_ptr<GLShader> m_shader;
+    std::shared_ptr<GLTexture> m_texture;
+    std::shared_ptr<GLFramebuffer> m_frameBuffer;
     int m_textureLocation;
     int m_modelViewProjectioMatrixLocation;
 

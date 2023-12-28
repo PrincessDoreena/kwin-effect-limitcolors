@@ -118,23 +118,28 @@ bool LimitColorsEffect::loadData()
     return true;
 }
 
+void LimitColorsEffect::prePaintScreen(ScreenPrePaintData &data, std::chrono::milliseconds presentTime) {
+    data.mask |= PAINT_SCREEN_TRANSFORMED;
+    effects->prePaintScreen(data, presentTime);
+}
+
 void LimitColorsEffect::paintScreen(int mask, const QRegion & region, KWin::ScreenPaintData & data) {
     if (m_valid && !m_inited) {
          m_valid = loadData();
     }
 
     EffectScreen* screen = data.screen();
-    GLTexture texture(GL_RGBA8, screen->geometry().size() * screen->devicePixelRatio());
-    GLFramebuffer framebuffer(&texture);
+    m_texture.reset(new GLTexture(GL_RGBA8, screen->geometry().size() * screen->devicePixelRatio()));
+    m_frameBuffer.reset(new GLFramebuffer(m_texture.get()));
 
-    GLFramebuffer::pushFramebuffer(&framebuffer);
+    GLFramebuffer::pushFramebuffer(m_frameBuffer.get());
     effects->paintScreen(mask, region, data);
     GLFramebuffer::popFramebuffer();
 
     QMatrix4x4 modelViewProjectionMatrix(data.projectionMatrix());
 
     glActiveTexture(GL_TEXTURE0);
-    texture.bind();
+    m_texture->bind();
 
     glClearColor(0, 0, 0, 0);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -144,10 +149,10 @@ void LimitColorsEffect::paintScreen(int mask, const QRegion & region, KWin::Scre
     m_shader->setUniform(m_modelViewProjectioMatrixLocation, modelViewProjectionMatrix);
     m_shader->setUniform(m_textureLocation, 0);
 
-    texture.render(screen->geometry(), 1);
+    m_texture->render(screen->geometry(), 1);
 
     sm->popShader();
-    texture.unbind();
+    m_texture->unbind();
 }
 
 int LimitColorsEffect::configuredColorFormat() const
