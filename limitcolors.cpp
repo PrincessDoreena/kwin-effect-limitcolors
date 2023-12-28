@@ -119,7 +119,9 @@ bool LimitColorsEffect::loadData()
 }
 
 void LimitColorsEffect::prePaintScreen(ScreenPrePaintData &data, std::chrono::milliseconds presentTime) {
-    data.mask |= PAINT_SCREEN_TRANSFORMED;
+    if (effects->waylandDisplay()) {
+        data.mask |= PAINT_SCREEN_TRANSFORMED;
+    }
     effects->prePaintScreen(data, presentTime);
 }
 
